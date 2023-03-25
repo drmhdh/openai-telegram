@@ -59,14 +59,7 @@ def generate_image(prompt, n=1, size="512x512"):
 bot = telebot.TeleBot(BOT_TOKEN)
 
 # Definindo as funções que serão executadas quando o usuário enviar um comando
-@bot.message_handler(commands=["start"])
-def handle_start(message):
-    bot.reply_to(message, "Olá, eu sou um bot que gera texto e imagem a partir de textos. Digite /help para saber como me usar.")
 
-@bot.message_handler(commands=['help'])
-def send_welcome(message):
-    help_message = "Olá! Eu sou o Penna, um bot alimentado pelo modelo de linguagem GPT. \n\nAqui estão os comandos que eu entendo:\n/start - Inicia o bot\n/help - Exibe esta mensagem de ajuda\n/image [prompt] - Gera uma imagem a partir do prompt fornecido\n/text [prompt] - Gera um texto a partir do prompt fornecido\n/tweet [prompt] - Gera um tweet a partir do prompt fornecido\n\nDigite um comando para começar!"
-    bot.send_message(message.chat.id, help_message)
 
 @bot.message_handler(commands=["text"])
 def handle_text(message):
@@ -93,5 +86,3 @@ def handle_tweet(message):
     tweet = generated_text
     bot.reply_to(message, tweet)
 
-# Iniciando o processo de escutar mensagens do bot
-bot.polling()
